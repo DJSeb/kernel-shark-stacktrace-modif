@@ -1,3 +1,4 @@
+# Build stuff:
 kernelshark.desktop
 libkshark.pc
 org.freedesktop.kshark-record.policy
@@ -17,3 +18,5 @@ build/examples
 build/.qt
 build/CMakeFiles
 
+# Dev stuff:
+.clang-format
