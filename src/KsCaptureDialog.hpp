@@ -83,6 +83,11 @@ private:
 
 	QPushButton	_outputBrowseButton;
 
+  /**NOTE: Changed here
+   * Check box to indicate tracing the stack for every event.
+   */
+  QCheckBox _stackCheckBox;
+
 	QString		_lastFilePath;
 
 	QStringList _getPlugins();

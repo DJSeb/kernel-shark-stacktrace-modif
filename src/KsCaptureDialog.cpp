@@ -77,6 +77,7 @@ KsCaptureControl::KsCaptureControl(QWidget *parent)
   _importSettingsButton("Import Settings", this),
   _exportSettingsButton("Export Settings", this),
   _outputBrowseButton("Browse", this),
+  _stackCheckBox("Enable stack tracing", this), //NOTE: Changed here
   _commandCheckBox("Display output", this),
   _captureButton("Capture", &_controlToolBar),
   _applyButton("Apply", &_controlToolBar),
@@ -159,6 +160,11 @@ KsCaptureControl::KsCaptureControl(QWidget *parent)
 	_commandCheckBox.adjustSize();
 	_execLayout.addWidget(&_commandCheckBox, row++, 2);
 
+  //NOTE: Changed here
+  _stackCheckBox.setCheckState(Qt::Unchecked);
+  _stackCheckBox.adjustSize();
+  _execLayout.addWidget(&_stackCheckBox, row++, 2);
+
 	_topLayout.addLayout(&_execLayout);
 
 	lamAddLine();
@@ -200,7 +206,11 @@ QStringList KsCaptureControl::getArgs()
 	if (_pluginsComboBox.currentText() != "nop")
 		argv << "-p" << _pluginsComboBox.currentText();
 
-	if (_eventsWidget.all())
+  //NOTE: Changed here
+  if (_stackCheckBox.isChecked())
+    argv << "-T";
+	
+  if (_eventsWidget.all())
 		argv << "-e" << "all";
 	else
 		argv << _eventsWidget.getCheckedEvents(true);
