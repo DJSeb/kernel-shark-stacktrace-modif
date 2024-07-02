@@ -818,3 +818,15 @@ void KsTraceGraph::_onCustomContextMenu(const QPoint &point)
 		menu->exec(global);
 	}
 }
+
+void KsTraceGraph::setPreviewLabels(const QString& label1,
+									const QString& label2,
+									const QString& label3,
+									const QString& label4,
+									const QString& label5) {
+	_labelI1.setText(label1);
+	_labelI2.setText(label2);
+	_labelI3.setText(label3);
+	_labelI4.setText(label4);
+	_labelI5.setText(label5);
+}
