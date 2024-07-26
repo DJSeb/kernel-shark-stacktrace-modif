@@ -79,11 +79,11 @@ public:
 	bool eventFilter(QObject* obj, QEvent* evt) override;
 
 	/** NOTE: Changed here **/
-	void setPreviewLabels(const QString& label1,
-						  const QString& label2,
-						  const QString& label3,
-						  const QString& label4,
-						  const QString& label5);
+	void setPreviewLabels(const QString& label1 = "",
+						  const QString& label2 = "",
+						  const QString& label3 = "",
+						  const QString& label4 = "",
+						  const QString& label5 = "");
 
 signals:
 	/**

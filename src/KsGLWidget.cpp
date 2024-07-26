@@ -248,6 +248,24 @@ int KsGLWidget::_getLastCPU(struct kshark_trace_histo *histo,
 
 }
 
+static void _mouseMoveOverPluginShapes(QMouseEvent *event,
+									   KsPlot::PlotObjList &shapes)
+{
+	KsPlot::PlotObject *mouseOnPlugin(nullptr);
+	double distance, distanceMin = FONT_HEIGHT;
+
+	for (auto const &s: shapes) {
+		distance = s->distance(event->pos().x(), event->pos().y());
+		if (distance < distanceMin) {
+			distanceMin = distance;
+			mouseOnPlugin = s;
+		}
+	}
+
+	if (mouseOnPlugin)
+		mouseOnPlugin->mouseHover();
+}
+
 /** Reimplemented event handler used to receive mouse move events. */
 void KsGLWidget::mouseMoveEvent(QMouseEvent *event)
 {
@@ -278,6 +296,11 @@ void KsGLWidget::mouseMoveEvent(QMouseEvent *event)
 
 		emit notFound(ksmodel_bin_ts(_model.histo(), bin), sd, cpu, pid);
 	}
+
+	/** NOTE: 
+	 * Changed here
+	*/
+	_mouseMoveOverPluginShapes(event, _shapes);
 }
 
 /** Reimplemented event handler used to receive mouse release events. */

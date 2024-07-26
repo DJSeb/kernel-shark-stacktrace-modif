@@ -112,6 +112,14 @@ public:
 			_doubleClick();
 	}
 
+	/**
+	 * NOTE: Changed here
+	*/
+	void mouseHover() const {
+		if (_visible)
+			_mouseHover();
+	}
+
 	virtual double distance(int x, int y) const;
 
 	/** Is this object visible. */
@@ -127,6 +135,11 @@ private:
 	virtual void _draw(const Color &col, float s) const = 0;
 
 	virtual void _doubleClick() const {}
+
+	/**
+	 * NOTE: Changed here
+	*/
+	virtual void _mouseHover() const {}
 };
 
 /** List of graphical element. */
