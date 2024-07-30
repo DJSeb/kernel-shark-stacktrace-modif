@@ -1,4 +1,25 @@
+# Modifications
+This modified KernelShark has had 4 main changes made:
+1) `kshark-record` now allows to optionally trace the kernel stack
+   on each event through `trace-cmd`'s `-T` option.
+2) `KsPlot::PlotObject` class has two new member functions:
+    - Public function `mouseHover`, which works just like `doubleClick`,
+      but invokes the other new function (below)
+    - Private virtual function `_mouseHover`, which specifies an
+      action to do when the mouse hover over an object.
+3) In `KsGLWidget.cpp`, there has been added a static function
+   `_mouseMoveOverPluginShapes` which works almost the same as
+   `mouseDoubleClickEvent` (the only difference is place of
+   invocation, its staticity and it not finding and selecting an
+   event on left mouse button). It is called in `mouseMoveEvent`
+   at the very end.
+4) `KsTraceGraph` got an additional public member function `setPreviewLabels`,
+   which allows other code that can get hold of the graph to change
+   the six information labels next to the "Pointer" field in the main
+   window's top section.
 
+
+# KernelShark official README
 KernelShark is a front-end reader of tracing data.
 
 The official repository is here:

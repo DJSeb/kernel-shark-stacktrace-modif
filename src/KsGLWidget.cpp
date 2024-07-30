@@ -248,6 +248,9 @@ int KsGLWidget::_getLastCPU(struct kshark_trace_histo *histo,
 
 }
 
+/**
+ * NOTE: Changed here
+*/
 static void _mouseMoveOverPluginShapes(QMouseEvent *event,
 									   KsPlot::PlotObjList &shapes)
 {
